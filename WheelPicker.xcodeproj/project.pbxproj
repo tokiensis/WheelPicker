@@ -18,6 +18,7 @@
 		97B4D4C3278C572400644866 /* SelectedPositionBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B4D4C2278C572400644866 /* SelectedPositionBackground.swift */; };
 		97B4D4C5278C576700644866 /* GradientOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B4D4C4278C576700644866 /* GradientOverlay.swift */; };
 		97B4D4C8278C5E7D00644866 /* CircularWheelPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B4D4C7278C5E7D00644866 /* CircularWheelPicker.swift */; };
+		97B4D4CA278C5F6500644866 /* FiniteWheelPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B4D4C9278C5F6500644866 /* FiniteWheelPicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,7 @@
 		97B4D4C2278C572400644866 /* SelectedPositionBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedPositionBackground.swift; sourceTree = "<group>"; };
 		97B4D4C4278C576700644866 /* GradientOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientOverlay.swift; sourceTree = "<group>"; };
 		97B4D4C7278C5E7D00644866 /* CircularWheelPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularWheelPicker.swift; sourceTree = "<group>"; };
+		97B4D4C9278C5F6500644866 /* FiniteWheelPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiniteWheelPicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				97B4D4C7278C5E7D00644866 /* CircularWheelPicker.swift */,
+				97B4D4C9278C5F6500644866 /* FiniteWheelPicker.swift */,
 			);
 			path = Pickers;
 			sourceTree = "<group>";
@@ -246,6 +249,7 @@
 			files = (
 				97B4D4BC278C4CA100644866 /* FiniteWheelPickerDataSource.swift in Sources */,
 				97B4D4C5278C576700644866 /* GradientOverlay.swift in Sources */,
+				97B4D4CA278C5F6500644866 /* FiniteWheelPicker.swift in Sources */,
 				97B4D4BE278C4CE900644866 /* CircularWheelPickerDataSource.swift in Sources */,
 				97B4D4BA278C4C5700644866 /* WheelPickerDataSource.swift in Sources */,
 				97B4D4C8278C5E7D00644866 /* CircularWheelPicker.swift in Sources */,

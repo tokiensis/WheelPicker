@@ -11,6 +11,10 @@
 		28F828811C494B2C00330CF4 /* WheelPicker.h in Headers */ = {isa = PBXBuildFile; fileRef = 28F828801C494B2C00330CF4 /* WheelPicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		28F828881C494B2C00330CF4 /* WheelPicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28F8287D1C494B2C00330CF4 /* WheelPicker.framework */; };
 		28F8289A1C494B4200330CF4 /* iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F828991C494B4200330CF4 /* iOS.swift */; };
+		97B4D4BA278C4C5700644866 /* WheelPickerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B4D4B9278C4C5700644866 /* WheelPickerDataSource.swift */; };
+		97B4D4BC278C4CA100644866 /* FiniteWheelPickerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B4D4BB278C4CA100644866 /* FiniteWheelPickerDataSource.swift */; };
+		97B4D4BE278C4CE900644866 /* CircularWheelPickerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B4D4BD278C4CE900644866 /* CircularWheelPickerDataSource.swift */; };
+		97B4D4C0278C4D4100644866 /* DateWheelPickerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B4D4BF278C4D4100644866 /* DateWheelPickerDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +35,10 @@
 		28F828871C494B2C00330CF4 /* WheelPickerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WheelPickerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		28F8288E1C494B2C00330CF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		28F828991C494B4200330CF4 /* iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOS.swift; sourceTree = "<group>"; };
+		97B4D4B9278C4C5700644866 /* WheelPickerDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WheelPickerDataSource.swift; sourceTree = "<group>"; };
+		97B4D4BB278C4CA100644866 /* FiniteWheelPickerDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiniteWheelPickerDataSource.swift; sourceTree = "<group>"; };
+		97B4D4BD278C4CE900644866 /* CircularWheelPickerDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularWheelPickerDataSource.swift; sourceTree = "<group>"; };
+		97B4D4BF278C4D4100644866 /* DateWheelPickerDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateWheelPickerDataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,11 +90,23 @@
 		28F828971C494B4200330CF4 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				97B4D4B8278C4C3A00644866 /* DataSource */,
 				28F828991C494B4200330CF4 /* iOS.swift */,
 				28F828801C494B2C00330CF4 /* WheelPicker.h */,
 				28F828821C494B2C00330CF4 /* Info.plist */,
 			);
 			path = Sources;
+			sourceTree = "<group>";
+		};
+		97B4D4B8278C4C3A00644866 /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				97B4D4BD278C4CE900644866 /* CircularWheelPickerDataSource.swift */,
+				97B4D4BF278C4D4100644866 /* DateWheelPickerDataSource.swift */,
+				97B4D4BB278C4CA100644866 /* FiniteWheelPickerDataSource.swift */,
+				97B4D4B9278C4C5700644866 /* WheelPickerDataSource.swift */,
+			);
+			path = DataSource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,7 +219,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97B4D4BC278C4CA100644866 /* FiniteWheelPickerDataSource.swift in Sources */,
+				97B4D4BE278C4CE900644866 /* CircularWheelPickerDataSource.swift in Sources */,
+				97B4D4BA278C4C5700644866 /* WheelPickerDataSource.swift in Sources */,
 				28F8289A1C494B4200330CF4 /* iOS.swift in Sources */,
+				97B4D4C0278C4D4100644866 /* DateWheelPickerDataSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,7 +370,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.wataku-city.WheelPicker;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.wataku-city.WheelPicker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
@@ -367,7 +391,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.wataku-city.WheelPicker;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.wataku-city.WheelPicker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
@@ -382,7 +406,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.wataku-city.WheelPickerTests;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.wataku-city.WheelPickerTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -395,7 +419,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.wataku-city.WheelPickerTests;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.wataku-city.WheelPickerTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};

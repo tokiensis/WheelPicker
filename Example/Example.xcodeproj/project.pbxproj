@@ -15,6 +15,12 @@
 		2857502C24C21EB400ED22AD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2857500124C21EB200ED22AD /* ContentView.swift */; };
 		2857502D24C21EB400ED22AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2857500224C21EB400ED22AD /* Assets.xcassets */; };
 		2857502E24C21EB400ED22AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2857500224C21EB400ED22AD /* Assets.xcassets */; };
+		97B4D4E4278C90FD00644866 /* WheelPicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97B4D4E3278C90FD00644866 /* WheelPicker.framework */; };
+		97B4D4E5278C90FD00644866 /* WheelPicker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 97B4D4E3278C90FD00644866 /* WheelPicker.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		97B4D4E8278C911C00644866 /* WheelPicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97B4D4E7278C911C00644866 /* WheelPicker.framework */; };
+		97B4D4E9278C911C00644866 /* WheelPicker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 97B4D4E7278C911C00644866 /* WheelPicker.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		97B4D4EE278C98F300644866 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 97B4D4F1278C98F300644866 /* Localizable.strings */; };
+		97B4D4EF278C98F300644866 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 97B4D4F1278C98F300644866 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +40,31 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		97B4D4E6278C90FD00644866 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				97B4D4E5278C90FD00644866 /* WheelPicker.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		97B4D4EA278C911C00644866 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				97B4D4E9278C911C00644866 /* WheelPicker.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		2857500024C21EB200ED22AD /* ExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleApp.swift; sourceTree = "<group>"; };
 		2857500124C21EB200ED22AD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -49,6 +80,10 @@
 		2857502224C21EB400ED22AD /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2857502624C21EB400ED22AD /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		2857502824C21EB400ED22AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		97B4D4E3278C90FD00644866 /* WheelPicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = WheelPicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		97B4D4E7278C911C00644866 /* WheelPicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = WheelPicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		97B4D4F0278C98F300644866 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		97B4D4F2278C98F600644866 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97B4D4E4278C90FD00644866 /* WheelPicker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +99,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97B4D4E8278C911C00644866 /* WheelPicker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,6 +129,7 @@
 				2857501A24C21EB400ED22AD /* Tests iOS */,
 				2857502524C21EB400ED22AD /* Tests macOS */,
 				2857500824C21EB400ED22AD /* Products */,
+				97B4D4E2278C90FD00644866 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,6 +139,7 @@
 				2857500024C21EB200ED22AD /* ExampleApp.swift */,
 				2857500124C21EB200ED22AD /* ContentView.swift */,
 				2857500224C21EB400ED22AD /* Assets.xcassets */,
+				97B4D4F1278C98F300644866 /* Localizable.strings */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -151,6 +190,15 @@
 			path = "Tests macOS";
 			sourceTree = "<group>";
 		};
+		97B4D4E2278C90FD00644866 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				97B4D4E7278C911C00644866 /* WheelPicker.framework */,
+				97B4D4E3278C90FD00644866 /* WheelPicker.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -161,6 +209,7 @@
 				2857500324C21EB400ED22AD /* Sources */,
 				2857500424C21EB400ED22AD /* Frameworks */,
 				2857500524C21EB400ED22AD /* Resources */,
+				97B4D4E6278C90FD00644866 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -178,6 +227,7 @@
 				2857500B24C21EB400ED22AD /* Sources */,
 				2857500C24C21EB400ED22AD /* Frameworks */,
 				2857500D24C21EB400ED22AD /* Resources */,
+				97B4D4EA278C911C00644866 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -256,6 +306,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ja,
 			);
 			mainGroup = 28574FFA24C21EB200ED22AD;
 			productRefGroup = 2857500824C21EB400ED22AD /* Products */;
@@ -276,6 +327,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2857502D24C21EB400ED22AD /* Assets.xcassets in Resources */,
+				97B4D4EE278C98F300644866 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,6 +336,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2857502E24C21EB400ED22AD /* Assets.xcassets in Resources */,
+				97B4D4EF278C98F300644866 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -352,6 +405,18 @@
 			targetProxy = 2857502324C21EB400ED22AD /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		97B4D4F1278C98F300644866 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				97B4D4F0278C98F300644866 /* ja */,
+				97B4D4F2278C98F600644866 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		2857502F24C21EB400ED22AD /* Debug */ = {
@@ -478,7 +543,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.wataku-city.WheelPicker.Example;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.wataku-city.WheelPicker.Example";
 				PRODUCT_NAME = Example;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
@@ -499,7 +564,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.wataku-city.WheelPicker.Example;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.wataku-city.WheelPicker.Example";
 				PRODUCT_NAME = Example;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
@@ -522,8 +587,8 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.16;
-				PRODUCT_BUNDLE_IDENTIFIER = com.wataku-city.WheelPicker.Example;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.wataku-city.WheelPicker.Example";
 				PRODUCT_NAME = Example;
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
@@ -544,8 +609,8 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.16;
-				PRODUCT_BUNDLE_IDENTIFIER = com.wataku-city.WheelPicker.Example;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.wataku-city.WheelPicker.Example";
 				PRODUCT_NAME = Example;
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;

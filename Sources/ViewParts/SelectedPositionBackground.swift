@@ -9,8 +9,16 @@
 import SwiftUI
 
 public struct SelectedPositionBackground: View {
+    var color: Color {
+#if os(iOS)
+        return Color(.systemGray5)
+#elseif os(macOS)
+        return Color(NSColor.unemphasizedSelectedContentBackgroundColor)
+#endif
+    }
+    
     public var body: some View {
-        Color(.systemGray5)
+        color
             .opacity(0.8)
             .cornerRadius(4)
             .frame(height: 32)

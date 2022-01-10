@@ -17,6 +17,7 @@
 		97B4D4C0278C4D4100644866 /* DateWheelPickerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B4D4BF278C4D4100644866 /* DateWheelPickerDataSource.swift */; };
 		97B4D4C3278C572400644866 /* SelectedPositionBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B4D4C2278C572400644866 /* SelectedPositionBackground.swift */; };
 		97B4D4C5278C576700644866 /* GradientOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B4D4C4278C576700644866 /* GradientOverlay.swift */; };
+		97B4D4C8278C5E7D00644866 /* CircularWheelPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B4D4C7278C5E7D00644866 /* CircularWheelPicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +44,7 @@
 		97B4D4BF278C4D4100644866 /* DateWheelPickerDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateWheelPickerDataSource.swift; sourceTree = "<group>"; };
 		97B4D4C2278C572400644866 /* SelectedPositionBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedPositionBackground.swift; sourceTree = "<group>"; };
 		97B4D4C4278C576700644866 /* GradientOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientOverlay.swift; sourceTree = "<group>"; };
+		97B4D4C7278C5E7D00644866 /* CircularWheelPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularWheelPicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				97B4D4B8278C4C3A00644866 /* DataSource */,
+				97B4D4C6278C5E5D00644866 /* Pickers */,
 				97B4D4C1278C56ED00644866 /* ViewParts */,
 				28F828991C494B4200330CF4 /* WheelPicker.swift */,
 				28F828801C494B2C00330CF4 /* WheelPicker.h */,
@@ -121,6 +124,14 @@
 				97B4D4C4278C576700644866 /* GradientOverlay.swift */,
 			);
 			path = ViewParts;
+			sourceTree = "<group>";
+		};
+		97B4D4C6278C5E5D00644866 /* Pickers */ = {
+			isa = PBXGroup;
+			children = (
+				97B4D4C7278C5E7D00644866 /* CircularWheelPicker.swift */,
+			);
+			path = Pickers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -237,6 +248,7 @@
 				97B4D4C5278C576700644866 /* GradientOverlay.swift in Sources */,
 				97B4D4BE278C4CE900644866 /* CircularWheelPickerDataSource.swift in Sources */,
 				97B4D4BA278C4C5700644866 /* WheelPickerDataSource.swift in Sources */,
+				97B4D4C8278C5E7D00644866 /* CircularWheelPicker.swift in Sources */,
 				28F8289A1C494B4200330CF4 /* WheelPicker.swift in Sources */,
 				97B4D4C3278C572400644866 /* SelectedPositionBackground.swift in Sources */,
 				97B4D4C0278C4D4100644866 /* DateWheelPickerDataSource.swift in Sources */,

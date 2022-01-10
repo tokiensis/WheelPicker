@@ -41,8 +41,6 @@ public struct WheelPicker<DataSource: WheelPickerDataSource, Label: View>: View 
         .offset(x: 0, y: itemsHeightDifference(translationHeight: translationHeight) * (translationHeight > 0 ? 2.0 : -2.0))
         .frame(height: height)
         .clipped()
-        .background(SelectedPositionBackground())
-        .overlay(GradientOverlay())
         .contentShape(Rectangle())
         .gesture(
             DragGesture(minimumDistance: 0)

@@ -138,7 +138,11 @@ private extension WheelPicker {
     }
     
     func animate(animatingTranslation: CGFloat) {
-        guard animatingTranslation != 0 else { return }
+        guard animatingTranslation != 0 else {
+            draggingStartOffset = nil
+            translationHeight = .zero
+            return
+        }
         let frameLate: Double = 120
         let deceleration = -height / CGFloat(frameLate * frameLate)
         let decelerateFrames = Int(round(sqrt(abs(animatingTranslation / -deceleration))))

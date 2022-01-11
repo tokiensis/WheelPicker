@@ -23,7 +23,7 @@ public struct WheelPicker<DataSource: WheelPickerDataSource, Label: View>: View 
     private let fontSize: CGFloat = 22
     
     public var body: some View {
-        VStack(spacing: 6 + itemsHeightDifference(translationHeight: translationHeight) / 8) {
+        VStack(spacing: 6) {
             ForEach(0..<9, id: \.self) { index in
                 label(item(at: index, translationHeight: translationHeight))
                     .font(.system(size: fontSize))

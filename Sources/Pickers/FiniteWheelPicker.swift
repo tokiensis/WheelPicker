@@ -23,6 +23,5 @@ public struct FiniteWheelPicker<V: Hashable, Label: View>: View {
     public var body: some View {
         WheelPicker(selection: $selection, dataSource: dataSource, label: label)
             .background(SelectedPositionBackground())
-            .overlay(GradientOverlay())
     }
 }

@@ -64,7 +64,6 @@ public struct DateWheelPicker: View {
             .frame(width: 100)
         }
         .background(SelectedPositionBackground())
-        .overlay(GradientOverlay())
         .onChange(of: selection) { date in
             dateSelection = DateWheelPicker.timeRemovedDate(from: date)
             hourSelection = DateWheelPicker.hour(from: date)

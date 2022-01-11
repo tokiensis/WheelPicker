@@ -27,6 +27,7 @@ public struct WheelPicker<DataSource: WheelPickerDataSource, Label: View>: View 
             ForEach(0..<9, id: \.self) { index in
                 label(item(at: index, translationHeight: translationHeight))
                     .font(.system(size: fontSize))
+                    .opacity(opacity(at: index, translationHeight: translationHeight))
                     .rotation3DEffect(
                         .degrees(rotationDigrees(at: index, translationHeight: translationHeight)),
                         axis: (x: 1, y: 0, z: 0),
@@ -106,6 +107,17 @@ private extension WheelPicker {
         let offset = digreesTranslation(from: translationHeight).truncatingRemainder(dividingBy: 18)
         let ratio = (90 - abs(digrees + offset)) / 90
         return max(fontSize * CGFloat(ratio), 0)
+    }
+    
+    func opacity(at index: Int, translationHeight: CGFloat) -> Double {
+        let digrees = Double((index + 1) * 18) - 90
+        let offset = digreesTranslation(from: translationHeight).truncatingRemainder(dividingBy: 18)
+        let translatedDigrees = abs(digrees + offset)
+        if translatedDigrees < 20 {
+            return (translatedDigrees / -40) + 1
+        } else {
+            return (90 - translatedDigrees) / 140
+        }
     }
     
     func digreesTranslation(from translationHeight: CGFloat) -> Double {

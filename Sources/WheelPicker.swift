@@ -47,6 +47,7 @@ public struct WheelPicker<DataSource: WheelPickerDataSource, Label: View>: View 
                 .onChanged { value in
                     if timer?.isValid ?? false {
                         timer?.invalidate()
+                        self.timer = nil
                         updateSelectionBinding()
                         draggingStartOffset = nil
                         translationHeight = .zero
@@ -148,6 +149,7 @@ private extension WheelPicker {
         timer = Timer.scheduledTimer(withTimeInterval: 1 / frameLate, repeats: true) { timer in
             guard timerUpdateCount < timerRepeatCount else {
                 timer.invalidate()
+                self.timer = nil
                 updateSelectionBinding()
                 draggingStartOffset = nil
                 translationHeight = .zero

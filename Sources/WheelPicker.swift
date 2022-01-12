@@ -65,7 +65,17 @@ public struct WheelPicker<DataSource: WheelPickerDataSource, Label: View>: View 
                     let maxAnimatingTranslation = height * 3
                     let wheelStopResolution = height / 10
                     let adjustedEndTranslation = round(value.predictedEndTranslation.height / wheelStopResolution) * wheelStopResolution
-                    let animatingTranslation = min(max(adjustedEndTranslation - initialTranslation, -maxAnimatingTranslation), maxAnimatingTranslation)
+                    var animatingTranslation = min(max(adjustedEndTranslation - initialTranslation, -maxAnimatingTranslation), maxAnimatingTranslation)
+                    if abs(animatingTranslation) < wheelStopResolution * 2.5 {
+                        let translationFromCurrentSelection = initialTranslation.truncatingRemainder(dividingBy: wheelStopResolution)
+                        if translationFromCurrentSelection == 0 {
+                            animatingTranslation = 0
+                        } else if abs(translationFromCurrentSelection) < wheelStopResolution / 2 {
+                            animatingTranslation = -translationFromCurrentSelection
+                        } else {
+                            animatingTranslation = (wheelStopResolution - abs(translationFromCurrentSelection)) * (translationFromCurrentSelection > 0 ? 1 : -1)
+                        }
+                    }
                     animate(animatingTranslation: animatingTranslation)
                 }
         )

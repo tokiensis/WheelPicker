@@ -26,7 +26,7 @@ WheelPicker is ...
   * Changing text color, font, or size
   * Complex labels with Image, Shape, etc...
 
-<!-- <img src="Example/WheelPicker.gif" width="300"/> -->
+<img src="Screenshots/iOS.png" width="400"> <img src="Screenshots/macOS.png" width="400">
 
 ## Usage
 

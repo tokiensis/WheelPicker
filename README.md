@@ -49,8 +49,6 @@ import WheelPicker
 
 Before contribute check the [CONTRIBUTING](https://github.com/tokiensis/WheelPicker/blob/master/CONTRIBUTING.md) file for more info.
 
-If you use **WheelPicker** in your app We would love to hear about it! Drop us a line on [Twitter](https://twitter.com/tokiensis).
-
 ## Examples
 
 Follow these 3 steps to run Example project: clone WheelPicker repository, open WheelPicker workspace and run the *Example* project.
@@ -64,7 +62,7 @@ Follow these 3 steps to run Example project: clone WheelPicker repository, open 
 To install WheelPicker, simply add the following line to your Podfile:
 
 ```ruby
-pod 'WheelPicker', '~> 1.0'
+pod 'WheelPicker', '~> 1.0.0'
 ```
 
 ### Carthage
@@ -74,7 +72,7 @@ pod 'WheelPicker', '~> 1.0'
 To install WheelPicker, simply add the following line to your Cartfile:
 
 ```ogdl
-github "tokiensis/WheelPicker" ~> 1.0
+github "tokiensis/WheelPicker" ~> 1.0.0
 ```
 
 ## Author

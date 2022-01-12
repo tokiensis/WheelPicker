@@ -55,21 +55,19 @@ Follow these 3 steps to run Example project: clone WheelPicker repository, open 
 
 ## Installation
 
+### SwiftPM
+
+```
+https://github.com/tokiensis/WheelPicker.git
+```
+
 ### CocoaPods
-
-[CocoaPods](https://cocoapods.org/) is a dependency manager for Cocoa projects.
-
-To install WheelPicker, simply add the following line to your Podfile:
 
 ```ruby
 pod 'WheelPicker', '~> 1.0.0'
 ```
 
 ### Carthage
-
-[Carthage](https://github.com/Carthage/Carthage) is a simple, decentralized dependency manager for Cocoa.
-
-To install WheelPicker, simply add the following line to your Cartfile:
 
 ```ogdl
 github "tokiensis/WheelPicker" ~> 1.0.0

@@ -64,7 +64,7 @@ https://github.com/tokiensis/WheelPicker.git
 ### CocoaPods
 
 ```ruby
-pod 'WheelPicker', '~> 1.0.0'
+pod 'WheelPicker-SwiftUI', '~> 1.0.0'
 ```
 
 ### Carthage

@@ -170,10 +170,14 @@ private extension WheelPicker {
         let decelerateFrames = Int(round(sqrt(abs(animatingTranslation / -deceleration))))
         let initialSpeed = -deceleration * CGFloat(decelerateFrames)
         
+        let maxTranslationLimit = dataSource.maxTranslation(draggingStartOffset: draggingStartOffset)
+        let minTranslationLimit = dataSource.minTranslation(draggingStartOffset: draggingStartOffset)
+        let translationRange = minTranslationLimit...maxTranslationLimit
+        
         timerRepeatCount = decelerateFrames + abs(Int((animatingTranslation / initialSpeed) / 2))
         timerUpdateCount = 0
         timer = Timer.scheduledTimer(withTimeInterval: 1 / frameLate, repeats: true) { timer in
-            guard timerUpdateCount < timerRepeatCount else {
+            guard timerUpdateCount < timerRepeatCount, translationRange.contains(translationHeight) else {
                 timer.invalidate()
                 self.timer = nil
                 updateSelectionBinding()

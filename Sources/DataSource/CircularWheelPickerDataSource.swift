@@ -42,4 +42,12 @@ public struct CircularWheelPickerDataSource<T: Hashable>: WheelPickerDataSource 
     public func limitDigreesTranslation(_ rawTranslation: Double, draggingStartOffset: Int?) -> Double {
         return rawTranslation
     }
+    
+    public func maxTranslation(draggingStartOffset: Int?) -> Double {
+        .infinity
+    }
+    
+    public func minTranslation(draggingStartOffset: Int?) -> Double {
+        -.infinity
+    }
 }

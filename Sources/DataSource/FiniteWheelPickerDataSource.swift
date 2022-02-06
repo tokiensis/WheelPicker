@@ -31,11 +31,22 @@ public struct FiniteWheelPickerDataSource<T: Hashable>: WheelPickerDataSource {
     }
     
     public func limitDigreesTranslation(_ rawTranslation: Double, draggingStartOffset: Int?) -> Double {
+        let maxTranslation = maxTranslation(draggingStartOffset: draggingStartOffset)
+        let minTranslation = minTranslation(draggingStartOffset: draggingStartOffset)
+        return min(max(rawTranslation, minTranslation), maxTranslation)
+    }
+    
+    public func maxTranslation(draggingStartOffset: Int?) -> Double {
         guard let initialSelectionIndex = items.firstIndex(of: initialSelection),
               let draggingStartOffset = draggingStartOffset else { return 0 }
         let draggingStartIndex = initialSelectionIndex + draggingStartOffset
-        let maxTranslation = Double(draggingStartIndex * 18)
-        let minTranslation = -Double(items.count - draggingStartIndex - 1) * 18
-        return min(max(rawTranslation, minTranslation), maxTranslation)
+        return Double(draggingStartIndex * 18)
+    }
+    
+    public func minTranslation(draggingStartOffset: Int?) -> Double {
+        guard let initialSelectionIndex = items.firstIndex(of: initialSelection),
+              let draggingStartOffset = draggingStartOffset else { return 0 }
+        let draggingStartIndex = initialSelectionIndex + draggingStartOffset
+        return -Double(items.count - draggingStartIndex - 1) * 18
     }
 }

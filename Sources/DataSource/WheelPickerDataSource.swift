@@ -15,4 +15,6 @@ public protocol WheelPickerDataSource {
     func offset(of item: T) -> Int?
     func translationOffset(to item: T, origin: Int) -> Int
     func limitDigreesTranslation(_ rawTranslation: Double, draggingStartOffset: Int?) -> Double
+    func maxTranslation(draggingStartOffset: Int?) -> Double
+    func minTranslation(draggingStartOffset: Int?) -> Double
 }

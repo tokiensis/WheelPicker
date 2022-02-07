@@ -17,6 +17,8 @@ public struct SelectedPositionBackground: View {
 #endif
     }
     
+    public init() {}
+    
     public var body: some View {
         color
             .opacity(0.8)

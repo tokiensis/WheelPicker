@@ -12,6 +12,11 @@ public struct CircularWheelPickerDataSource<T: Hashable>: WheelPickerDataSource 
     public var items: [T]
     public var initialSelection: T
     
+    public init(items: [T], initialSelection: T) {
+        self.items = items
+        self.initialSelection = initialSelection
+    }
+    
     public func item(at offset: Int) -> T? {
         guard let initialSelectionIndex = items.firstIndex(of: initialSelection) else { return nil }
         let itemIndex = initialSelectionIndex + offset

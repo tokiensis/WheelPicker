@@ -22,6 +22,12 @@ public struct WheelPicker<DataSource: WheelPickerDataSource, Label: View>: View 
     private let height: CGFloat = 180
     private let fontSize: CGFloat = 22
     
+    public init(selection: Binding<DataSource.T>, dataSource: DataSource, @ViewBuilder label: @escaping (DataSource.T?) -> Label) {
+        self.selection = selection
+        self.dataSource = dataSource
+        self.label = label
+    }
+    
     public var body: some View {
         VStack(spacing: 6) {
             ForEach(0..<9, id: \.self) { index in

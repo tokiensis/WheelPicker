@@ -12,6 +12,10 @@ public struct DateWheelPickerDataSource: WheelPickerDataSource {
     public var initialSelection: Date
     private let oneDaySeconds = 24 * 60 * 60
     
+    public init(initialSelection: Date) {
+        self.initialSelection = initialSelection
+    }
+    
     public func item(at offset: Int) -> Date? {
         initialSelection.advanced(by: TimeInterval(oneDaySeconds * offset))
     }

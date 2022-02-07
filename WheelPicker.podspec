@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "WheelPicker-SwiftUI"
-  s.version          = "1.0.1"
+  s.version          = "1.0.2"
   s.summary          = "Pure-SwiftUI WheelPicker providing a circular, finite, or infinite selection."
   s.homepage         = "https://github.com/tokiensis/WheelPicker"
   s.license          = { type: 'MIT', file: 'LICENSE' }

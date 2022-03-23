@@ -54,14 +54,15 @@ public struct DateWheelPicker: View {
             
             WheelPicker(selection: $hourSelection, dataSource: hourPickerDataSource) {
                 Text(hourText(from: $0))
-                    .frame(maxWidth: .infinity, alignment: .trailing)
+                    .frame(maxWidth: .infinity)
             }
-            .frame(width: 40)
+            .frame(width: 60)
             
             WheelPicker(selection: $minuteSelection, dataSource: minutePickerDataSource) {
                 Text(minuteText(from: $0))
             }
-            .frame(width: 100)
+            .frame(width: 60)
+            .padding(.trailing, 20)
         }
         .background(SelectedPositionBackground())
         .onChange(of: selection) { date in

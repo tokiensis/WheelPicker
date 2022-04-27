@@ -64,14 +64,14 @@ public struct WheelPicker<DataSource: WheelPickerDataSource, Label: View>: View 
                     if translationHeight == .zero {
                         draggingStartOffset = selectionOffset
                     }
-                    translationHeight = value.translation.height
-                    updateSelection(from: value.translation.height)
+                    translationHeight = value.translation.height * 0.6
+                    updateSelection(from: value.translation.height * 0.6)
                 }
                 .onEnded { value in
                     let initialTranslation = translationHeight
                     let maxAnimatingTranslation = height * 3
                     let wheelStopResolution = height / 10
-                    let adjustedEndTranslation = round(value.predictedEndTranslation.height / wheelStopResolution) * wheelStopResolution
+                    let adjustedEndTranslation = round((value.predictedEndTranslation.height * 0.6) / wheelStopResolution) * wheelStopResolution
                     var animatingTranslation = min(max(adjustedEndTranslation - initialTranslation, -maxAnimatingTranslation), maxAnimatingTranslation)
                     if abs(animatingTranslation) < wheelStopResolution * 2.5 {
                         let translationFromCurrentSelection = initialTranslation.truncatingRemainder(dividingBy: wheelStopResolution)

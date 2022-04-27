@@ -21,6 +21,7 @@ public struct WheelPicker<DataSource: WheelPickerDataSource, Label: View>: View 
     @State private var timerUpdateCount = 0
     private let height: CGFloat = 180
     private let fontSize: CGFloat = 22
+    private let frameLate: Double = 120
     
     public init(selection: Binding<DataSource.T>, dataSource: DataSource, @ViewBuilder label: @escaping (DataSource.T?) -> Label) {
         self.selection = selection
@@ -82,7 +83,7 @@ public struct WheelPicker<DataSource: WheelPickerDataSource, Label: View>: View 
                             animatingTranslation = (wheelStopResolution - abs(translationFromCurrentSelection)) * (translationFromCurrentSelection > 0 ? 1 : -1)
                         }
                     }
-                    animate(animatingTranslation: animatingTranslation)
+                    animate(animatingTranslation: animatingTranslation, decelerationFrames: 120)
                 }
         )
         .onChange(of: selection.wrappedValue) { value in
@@ -92,7 +93,7 @@ public struct WheelPicker<DataSource: WheelPickerDataSource, Label: View>: View 
             let wheelStopResolution = height / 10
             let translationHeight = -CGFloat(translationOffset) * wheelStopResolution
             draggingStartOffset = selectionOffset
-            animate(animatingTranslation: translationHeight)
+            animate(animatingTranslation: translationHeight, decelerationFrames: 60)
         }
     }
 }
@@ -165,14 +166,13 @@ private extension WheelPicker {
         selection.wrappedValue = newSelectionItem
     }
     
-    func animate(animatingTranslation: CGFloat) {
+    func animate(animatingTranslation: CGFloat, decelerationFrames: Double) {
         guard animatingTranslation != 0 else {
             draggingStartOffset = nil
             translationHeight = .zero
             return
         }
-        let frameLate: Double = 120
-        let deceleration = -height / CGFloat(frameLate * frameLate)
+        let deceleration = -max(abs(animatingTranslation), height) / CGFloat(decelerationFrames * decelerationFrames)
         let decelerateFrames = Int(round(sqrt(abs(animatingTranslation / -deceleration))))
         let initialSpeed = -deceleration * CGFloat(decelerateFrames)
         
@@ -180,7 +180,7 @@ private extension WheelPicker {
         let minTranslationLimit = dataSource.minTranslation(draggingStartOffset: draggingStartOffset)
         let translationRange = minTranslationLimit...maxTranslationLimit
         
-        timerRepeatCount = decelerateFrames + abs(Int((animatingTranslation / initialSpeed) / 2))
+        timerRepeatCount = decelerateFrames + abs(Int(round(animatingTranslation / initialSpeed) / 2))
         timerUpdateCount = 0
         timer = Timer.scheduledTimer(withTimeInterval: 1 / frameLate, repeats: true) { timer in
             guard timerUpdateCount < timerRepeatCount, translationRange.contains(translationHeight) else {
@@ -192,11 +192,13 @@ private extension WheelPicker {
                 return
             }
             let remainingFrames = timerRepeatCount - timerUpdateCount
-            if remainingFrames >= decelerateFrames {
+            if remainingFrames > decelerateFrames {
                 translationHeight += CGFloat(initialSpeed) * (animatingTranslation > 0 ? 1 : -1)
             } else {
-                let translation = initialSpeed * CGFloat(decelerateFrames - remainingFrames) + ((deceleration * pow(CGFloat(decelerateFrames - remainingFrames), 2)) / 2)
-                let prevFrameTranslation = initialSpeed * CGFloat(decelerateFrames - remainingFrames - 1) + ((deceleration * pow(CGFloat(decelerateFrames - remainingFrames - 1), 2)) / 2)
+                let deceleratedCount = decelerateFrames - remainingFrames + 1
+                let prevDeceleratedCount = max(deceleratedCount - 1, 0)
+                let translation = initialSpeed * CGFloat(deceleratedCount) + ((deceleration * pow(CGFloat(deceleratedCount), 2)) / 2)
+                let prevFrameTranslation = initialSpeed * CGFloat(prevDeceleratedCount) + ((deceleration * pow(CGFloat(prevDeceleratedCount), 2)) / 2)
                 translationHeight += (translation - prevFrameTranslation) * (animatingTranslation > 0 ? 1 : -1)
             }
             updateSelection(from: translationHeight)

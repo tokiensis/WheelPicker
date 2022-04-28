@@ -16,6 +16,7 @@ public struct WheelPicker<DataSource: WheelPickerDataSource, Label: View>: View 
     @State private var translationHeight: CGFloat = .zero
     @State private var selectionOffset: Int = 0
     @State private var draggingStartOffset: Int?
+    @State private var draggingStartTranslationHeight: CGFloat = .zero
     @State private var timer: Timer?
     @State private var timerRepeatCount = 0
     @State private var timerUpdateCount = 0
@@ -56,24 +57,24 @@ public struct WheelPicker<DataSource: WheelPickerDataSource, Label: View>: View 
                     if timer?.isValid ?? false {
                         timer?.invalidate()
                         self.timer = nil
-                        updateSelectionBinding()
-                        draggingStartOffset = nil
-                        translationHeight = .zero
+                        translationHeight = translationHeight.truncatingRemainder(dividingBy: 18)
+                        draggingStartOffset = selectionOffset
+                        draggingStartTranslationHeight = translationHeight
                         return
                     }
                     if translationHeight == .zero {
                         draggingStartOffset = selectionOffset
+                        draggingStartTranslationHeight = .zero
                     }
-                    translationHeight = value.translation.height * 0.6
-                    updateSelection(from: value.translation.height * 0.6)
+                    translationHeight = reduce(translationHeight: value.translation.height)
+                    updateSelection(from: translationHeight)
                 }
                 .onEnded { value in
                     let initialTranslation = translationHeight
                     let maxAnimatingTranslation = height * 3
                     let wheelStopResolution = height / 10
-                    let adjustedEndTranslation = round((value.predictedEndTranslation.height * 0.6) / wheelStopResolution) * wheelStopResolution
-                    var animatingTranslation = min(max(adjustedEndTranslation - initialTranslation, -maxAnimatingTranslation), maxAnimatingTranslation)
-                    if abs(animatingTranslation) < wheelStopResolution * 2.5 {
+                    var animatingTranslation: CGFloat = .zero
+                    if abs(value.predictedEndTranslation.height) < wheelStopResolution * 2.5 {
                         let translationFromCurrentSelection = initialTranslation.truncatingRemainder(dividingBy: wheelStopResolution)
                         if translationFromCurrentSelection == 0 {
                             animatingTranslation = 0
@@ -82,6 +83,10 @@ public struct WheelPicker<DataSource: WheelPickerDataSource, Label: View>: View 
                         } else {
                             animatingTranslation = (wheelStopResolution - abs(translationFromCurrentSelection)) * (translationFromCurrentSelection > 0 ? 1 : -1)
                         }
+                    } else {
+                        let reducedEndTranslation = reduce(translationHeight: value.predictedEndTranslation.height)
+                        let adjustedEndTranslation = round(reducedEndTranslation / wheelStopResolution) * wheelStopResolution
+                        animatingTranslation = min(max(adjustedEndTranslation - initialTranslation, -maxAnimatingTranslation), maxAnimatingTranslation)
                     }
                     animate(animatingTranslation: animatingTranslation, decelerationFrames: 120)
                 }
@@ -151,6 +156,10 @@ private extension WheelPicker {
             $0 + itemHeight(at: $1, translationHeight: translationHeight)
         }
         return defaultItemsHeight - itemsHeight
+    }
+    
+    func reduce(translationHeight: CGFloat) -> CGFloat {
+        translationHeight * 0.6 + draggingStartTranslationHeight
     }
     
     func updateSelection(from translationHeight: CGFloat) {

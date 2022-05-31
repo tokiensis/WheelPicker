@@ -38,7 +38,7 @@ public struct CircularWheelPickerDataSource<T: Hashable>: WheelPickerDataSource 
         let minimumOriginOffset = origin % items.count
         let translation = offset - minimumOriginOffset
         if abs(translation) > items.count / 2 {
-            return (items.count - abs(translation)) * (origin > 0 ? 1 : -1)
+            return (items.count - abs(translation)) * (translation > 0 ? -1 : 1)
         } else {
             return translation
         }

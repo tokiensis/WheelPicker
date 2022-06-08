@@ -92,11 +92,18 @@ public struct WheelPicker<DataSource: WheelPickerDataSource, Label: View>: View 
                 }
         )
         .onChange(of: selection.wrappedValue) { value in
-            guard draggingStartOffset == nil else { return }
+            if timer?.isValid ?? false {
+                timer?.invalidate()
+                timer = nil
+                translationHeight = translationHeight.truncatingRemainder(dividingBy: 18)
+                draggingStartTranslationHeight = translationHeight
+            } else {
+                draggingStartTranslationHeight = .zero
+            }
             let translationOffset = dataSource.translationOffset(to: value, origin: selectionOffset)
             guard translationOffset != 0 else { return }
             let wheelStopResolution = height / 10
-            let translationHeight = -CGFloat(translationOffset) * wheelStopResolution
+            let translationHeight = -CGFloat(translationOffset) * wheelStopResolution - draggingStartTranslationHeight
             draggingStartOffset = selectionOffset
             animate(animatingTranslation: translationHeight, decelerationFrames: 60)
         }

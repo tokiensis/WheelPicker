@@ -20,6 +20,10 @@ public struct WheelPicker<DataSource: WheelPickerDataSource, Label: View>: View 
     @State private var timer: Timer?
     @State private var timerRepeatCount = 0
     @State private var timerUpdateCount = 0
+    @State private var lastDigreesTranslation: CGFloat = .zero
+    @State private var lastFeedbackOffset = 0
+    @State private var isFeedbackEnabled = false
+    @State private var feedbackManager = FeedbackManager()
     private let height: CGFloat = 180
     private let fontSize: CGFloat = 22
     private let frameLate: Double = 120
@@ -66,6 +70,7 @@ public struct WheelPicker<DataSource: WheelPickerDataSource, Label: View>: View 
                         draggingStartOffset = selectionOffset
                         draggingStartTranslationHeight = .zero
                     }
+                    isFeedbackEnabled = true
                     translationHeight = reduce(translationHeight: value.translation.height)
                     updateSelection(from: translationHeight)
                 }
@@ -173,7 +178,16 @@ private extension WheelPicker {
         let digreesOffset = digreesTranslation(from: translationHeight)
         if let draggingStartOffset = draggingStartOffset {
             let indexOffset = -Int(round(digreesOffset / 18))
-            selectionOffset = draggingStartOffset + indexOffset
+            let newSelectionOffset = draggingStartOffset + indexOffset
+            let digreesDifference = abs(lastDigreesTranslation - digreesOffset)
+            let remainder = abs(digreesOffset.truncatingRemainder(dividingBy: 18))
+            let isFeedbackAllowed = digreesDifference > 0.8 || remainder < 1.0 || remainder > 17.0
+            if isFeedbackEnabled, newSelectionOffset != lastFeedbackOffset, isFeedbackAllowed {
+                feedbackManager.generateFeedback()
+                lastFeedbackOffset = newSelectionOffset
+            }
+            lastDigreesTranslation = digreesOffset
+            selectionOffset = newSelectionOffset
         }
     }
     
@@ -205,6 +219,7 @@ private extension WheelPicker {
                 updateSelectionBinding()
                 draggingStartOffset = nil
                 translationHeight = .zero
+                isFeedbackEnabled = false
                 return
             }
             let remainingFrames = timerRepeatCount - timerUpdateCount

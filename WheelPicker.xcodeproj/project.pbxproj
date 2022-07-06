@@ -18,6 +18,7 @@
 		97B4D4C8278C5E7D00644866 /* CircularWheelPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B4D4C7278C5E7D00644866 /* CircularWheelPicker.swift */; };
 		97B4D4CA278C5F6500644866 /* FiniteWheelPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B4D4C9278C5F6500644866 /* FiniteWheelPicker.swift */; };
 		97B4D4CC278C603A00644866 /* DateWheelPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B4D4CB278C603A00644866 /* DateWheelPicker.swift */; };
+		97B4D4F92875CB6200644866 /* FeedbackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B4D4F82875CB6200644866 /* FeedbackManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,7 @@
 		97B4D4C7278C5E7D00644866 /* CircularWheelPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularWheelPicker.swift; sourceTree = "<group>"; };
 		97B4D4C9278C5F6500644866 /* FiniteWheelPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiniteWheelPicker.swift; sourceTree = "<group>"; };
 		97B4D4CB278C603A00644866 /* DateWheelPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateWheelPicker.swift; sourceTree = "<group>"; };
+		97B4D4F82875CB6200644866 /* FeedbackManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				97B4D4B8278C4C3A00644866 /* DataSource */,
+				97B4D4F72875CB4C00644866 /* Feedback */,
 				97B4D4C6278C5E5D00644866 /* Pickers */,
 				97B4D4C1278C56ED00644866 /* ViewParts */,
 				28F828991C494B4200330CF4 /* WheelPicker.swift */,
@@ -132,6 +135,14 @@
 				97B4D4C9278C5F6500644866 /* FiniteWheelPicker.swift */,
 			);
 			path = Pickers;
+			sourceTree = "<group>";
+		};
+		97B4D4F72875CB4C00644866 /* Feedback */ = {
+			isa = PBXGroup;
+			children = (
+				97B4D4F82875CB6200644866 /* FeedbackManager.swift */,
+			);
+			path = Feedback;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -245,6 +256,7 @@
 			files = (
 				97B4D4BC278C4CA100644866 /* FiniteWheelPickerDataSource.swift in Sources */,
 				97B4D4CA278C5F6500644866 /* FiniteWheelPicker.swift in Sources */,
+				97B4D4F92875CB6200644866 /* FeedbackManager.swift in Sources */,
 				97B4D4BE278C4CE900644866 /* CircularWheelPickerDataSource.swift in Sources */,
 				97B4D4BA278C4C5700644866 /* WheelPickerDataSource.swift in Sources */,
 				97B4D4CC278C603A00644866 /* DateWheelPicker.swift in Sources */,

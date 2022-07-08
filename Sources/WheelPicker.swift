@@ -49,13 +49,20 @@ public struct WheelPicker<DataSource: WheelPickerDataSource, Label: View>: View 
                     )
                     .frame(maxWidth: .infinity)
                     .frame(height: itemHeight(at: index, translationHeight: translationHeight))
+                    .onTapGesture {
+                        guard translationHeight == .zero,
+                              let item = item(at: index, translationHeight: .zero),
+                              selection.wrappedValue != item else { return }
+                        isFeedbackEnabled = false
+                        selection.wrappedValue = item
+                    }
             }
         }
         .offset(x: 0, y: itemsHeightDifference(translationHeight: translationHeight) * (translationHeight > 0 ? 2.0 : -2.0))
         .frame(height: height)
         .clipped()
         .contentShape(Rectangle())
-        .gesture(
+        .simultaneousGesture(
             DragGesture(minimumDistance: 0)
                 .onChanged { value in
                     if timer?.isValid ?? false {
@@ -210,6 +217,11 @@ private extension WheelPicker {
         let minTranslationLimit = dataSource.minTranslation(draggingStartOffset: draggingStartOffset)
         let translationRange = minTranslationLimit...maxTranslationLimit
         
+        guard initialSpeed != 0 else {
+            draggingStartOffset = nil
+            translationHeight = .zero
+            return
+        }
         timerRepeatCount = decelerateFrames + abs(Int(round(animatingTranslation / initialSpeed) / 2))
         timerUpdateCount = 0
         timer = Timer.scheduledTimer(withTimeInterval: 1 / frameLate, repeats: true) { timer in

@@ -20,6 +20,8 @@ public struct WheelPicker<DataSource: WheelPickerDataSource, Label: View>: View 
     @State private var timer: Timer?
     @State private var timerRepeatCount = 0
     @State private var timerUpdateCount = 0
+    @State private var firstDragGestureValue: DragGesture.Value?
+    @State private var lastDragGestureValue: DragGesture.Value?
     @State private var lastDigreesTranslation: CGFloat = .zero
     @State private var lastFeedbackOffset = 0
     @State private var isFeedbackEnabled = false
@@ -76,17 +78,32 @@ public struct WheelPicker<DataSource: WheelPickerDataSource, Label: View>: View 
                     if translationHeight == .zero {
                         draggingStartOffset = selectionOffset
                         draggingStartTranslationHeight = .zero
+                        firstDragGestureValue = value
                     }
                     isFeedbackEnabled = true
+                    lastDragGestureValue = value
                     translationHeight = reduce(translationHeight: value.translation.height)
                     updateSelection(from: translationHeight)
                 }
                 .onEnded { value in
+                    guard let firstGestureValue = firstDragGestureValue,
+                          let lastGestureValue = lastDragGestureValue else {
+                        draggingStartOffset = nil
+                        translationHeight = .zero
+                        return
+                    }
                     let initialTranslation = translationHeight
-                    let maxAnimatingTranslation = height * 3
                     let wheelStopResolution = height / 10
+                    let timeFromFirstGesture = value.time.timeIntervalSince(firstGestureValue.time)
+                    let timeFromLastGesture = value.time.timeIntervalSince(lastGestureValue.time)
+                    let translationDiffernce = reduce(translationHeight:value.translation.height - lastGestureValue.translation.height)
+                    let reducedPredictedEndTranslation = reduce(translationHeight: value.predictedEndTranslation.height)
+                    
+                    let isInertialRotation = timeFromFirstGesture < 0.1 || (timeFromFirstGesture < 0.15 && reducedPredictedEndTranslation > height)
+                    let isMinimumRotation = (abs(reducedPredictedEndTranslation) < height * 2 && abs(translationDiffernce) < 2.0) || abs(reducedPredictedEndTranslation) < height * 1.5 || timeFromLastGesture > 0.01
+                    
                     var animatingTranslation: CGFloat = .zero
-                    if abs(value.predictedEndTranslation.height) < wheelStopResolution * 2.5 {
+                    if !isInertialRotation && isMinimumRotation {
                         let translationFromCurrentSelection = initialTranslation.truncatingRemainder(dividingBy: wheelStopResolution)
                         if translationFromCurrentSelection == 0 {
                             animatingTranslation = 0
@@ -96,8 +113,9 @@ public struct WheelPicker<DataSource: WheelPickerDataSource, Label: View>: View 
                             animatingTranslation = (wheelStopResolution - abs(translationFromCurrentSelection)) * (translationFromCurrentSelection > 0 ? 1 : -1)
                         }
                     } else {
-                        let reducedEndTranslation = reduce(translationHeight: value.predictedEndTranslation.height)
-                        let adjustedEndTranslation = round(reducedEndTranslation / wheelStopResolution) * wheelStopResolution
+                        let maxAnimatingTranslation = height * 3
+                        let endTranslation = value.predictedEndTranslation.height + draggingStartTranslationHeight
+                        let adjustedEndTranslation = round(endTranslation / wheelStopResolution) * wheelStopResolution
                         animatingTranslation = min(max(adjustedEndTranslation - initialTranslation, -maxAnimatingTranslation), maxAnimatingTranslation)
                     }
                     animate(animatingTranslation: animatingTranslation, decelerationFrames: 120)

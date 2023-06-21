@@ -51,18 +51,66 @@ public struct DateWheelPicker: View {
                     .frame(maxWidth: .infinity, alignment: .trailing)
             }
             .frame(width: 160)
+            .accessibilityElement()
+            .accessibilityValue(dateText(from: dateSelection))
+            .accessibilityAdjustableAction { direction in
+                switch direction {
+                case .increment:
+                    guard let offset = datePickerDataSource.offset(of: dateSelection),
+                          let newValue = datePickerDataSource.item(at: offset + 1) else { return }
+                    dateSelection = newValue
+                case .decrement:
+                    guard let offset = datePickerDataSource.offset(of: dateSelection),
+                          let newValue = datePickerDataSource.item(at: offset - 1) else { return }
+                    dateSelection = newValue
+                @unknown default:
+                    return
+                }
+            }
             
             WheelPicker(selection: $hourSelection, dataSource: hourPickerDataSource) {
                 Text(hourText(from: $0))
                     .frame(maxWidth: .infinity)
             }
             .frame(width: 60)
+            .accessibilityElement()
+            .accessibilityValue(hourText(from: hourSelection))
+            .accessibilityAdjustableAction { direction in
+                switch direction {
+                case .increment:
+                    guard let offset = hourPickerDataSource.offset(of: hourSelection),
+                          let newValue = hourPickerDataSource.item(at: offset + 1) else { return }
+                    hourSelection = newValue
+                case .decrement:
+                    guard let offset = hourPickerDataSource.offset(of: hourSelection),
+                          let newValue = hourPickerDataSource.item(at: offset - 1) else { return }
+                    hourSelection = newValue
+                @unknown default:
+                    return
+                }
+            }
             
             WheelPicker(selection: $minuteSelection, dataSource: minutePickerDataSource) {
                 Text(minuteText(from: $0))
             }
             .frame(width: 60)
             .padding(.trailing, 20)
+            .accessibilityElement()
+            .accessibilityValue(minuteText(from: minuteSelection))
+            .accessibilityAdjustableAction { direction in
+                switch direction {
+                case .increment:
+                    guard let offset = minutePickerDataSource.offset(of: minuteSelection),
+                          let newValue = minutePickerDataSource.item(at: offset + 1) else { return }
+                    minuteSelection = newValue
+                case .decrement:
+                    guard let offset = minutePickerDataSource.offset(of: minuteSelection),
+                          let newValue = minutePickerDataSource.item(at: offset - 1) else { return }
+                    minuteSelection = newValue
+                @unknown default:
+                    return
+                }
+            }
         }
         .background(SelectedPositionBackground())
         .onChange(of: selection) { date in

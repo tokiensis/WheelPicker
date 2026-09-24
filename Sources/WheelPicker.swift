@@ -65,7 +65,7 @@ public struct WheelPicker<DataSource: WheelPickerDataSource, Label: View>: View 
         .clipped()
         .contentShape(Rectangle())
         .simultaneousGesture(
-            DragGesture(minimumDistance: 0)
+            DragGesture(minimumDistance: dragGestureMinimumDistance)
                 .onChanged { value in
                     if timer?.isValid ?? false {
                         timer?.invalidate()
@@ -141,6 +141,13 @@ public struct WheelPicker<DataSource: WheelPickerDataSource, Label: View>: View 
 }
 
 private extension WheelPicker {
+    var dragGestureMinimumDistance: CGFloat {
+        if #available(iOS 27.0, *) {
+            return timer?.isValid ?? false ? 0 : 1
+        }
+        return 0
+    }
+    
     func item(at index: Int, translationHeight: CGFloat) -> DataSource.T? {
         let itemOffset: Int
         let offset = index - 4
